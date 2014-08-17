@@ -7,6 +7,7 @@ aliases=(
 )
 declare -A noVersion
 noVersion=(
+	[devel]=1
 )
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
