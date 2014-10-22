@@ -18,6 +18,14 @@ url='git://github.com/tianon/docker-brew-ubuntu-debootstrap'
 
 echo '# maintainer: Tianon Gravi <admwiggin@gmail.com> (@tianon)'
 
+commitRange='master..dist'
+commitCount="$(git rev-list "$commitRange" --count 2>/dev/null || true)"
+if [ "$commitCount" ] && [ "$commitCount" -gt 0 ]; then
+	echo
+	echo '# commits:' "($commitRange)"
+	git log --oneline "$commitRange" | sed 's/^/#  - /'
+fi
+
 for version in "${versions[@]}"; do
 	commit="$(git log -1 --format='format:%H' "$version")"
 	versionAliases=()
