@@ -74,7 +74,7 @@ for version in "${versions[@]}"; do
 	if [ "$repo" ]; then
 		docker build -t "${repo}:${suite}" "$dir"
 		if [ "$suite" != "$version" ]; then
-			docker tag "${repo}:${suite}" "${repo}:${version}"
+			docker tag -f "${repo}:${suite}" "${repo}:${version}"
 		fi
 		docker run -it --rm "${repo}:${suite}" bash -xc '
 			cat /etc/apt/sources.list
@@ -91,5 +91,5 @@ done
 
 latest="$(get_part . latest '')"
 if [ "$latest" ]; then
-	docker tag "${repo}:${latest}" "${repo}:latest"
+	docker tag -f "${repo}:${latest}" "${repo}:latest"
 fi
