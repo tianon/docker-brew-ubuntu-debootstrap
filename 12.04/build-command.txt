@@ -1,0 +1,3 @@
+mkimage.sh -d . debootstrap --variant=minbase --components=main,universe --include=inetutils-ping,iproute --force-check-gpg precise http://archive.ubuntu.com/ubuntu
+
+https://github.com/docker/docker/blob/master/contrib/mkimage.sh
